@@ -20,7 +20,8 @@ public class PrincipalController {
     public ResponseEntity<String> listAllHeaders(
             @RequestHeader Map<String, String> headers) {
         headers.forEach((key, value) -> {
-            System.out.println(String.format("Header '%s' = %s", key, value));
+            // System.out.println(String.format("Header '%s' = %s", key, value));
+            System.out.println(" ## Header Name :: "+key+" Header Value :: "+value);
         });
 
         return new ResponseEntity<String>(
