@@ -11,12 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/headers")
 public class PrincipalController {
 
-    @GetMapping("/listHeaders")
+    @GetMapping("/list-all")
     public ResponseEntity<String> listAllHeaders(
             @RequestHeader Map<String, String> headers) {
         headers.forEach((key, value) -> {
@@ -28,7 +30,7 @@ public class PrincipalController {
                 String.format("Listed %d headers", headers.size()), HttpStatus.OK);
     }
 
-    @GetMapping("/multiValue")
+    @GetMapping("/multi-value")
     public ResponseEntity<String> multiValue(
             @RequestHeader MultiValueMap<String, String> headers) {
         headers.forEach((key, value) -> {
@@ -40,7 +42,7 @@ public class PrincipalController {
                 String.format("Listed %d headers", headers.size()), HttpStatus.OK);
     }
 
-    @GetMapping("/getBaseUrl")
+    @GetMapping("/get-base-url")
     public ResponseEntity<String> getBaseUrl(@RequestHeader HttpHeaders headers) {
         InetSocketAddress host = headers.getHost();
         String url = "http://" + host.getHostName() + ":" + host.getPort();
