@@ -19,15 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrincipalController {
 
     @GetMapping("/list-all")
-    public ResponseEntity<String> listAllHeaders(
+    public ResponseEntity<Map<String, String>> listAllHeaders(
             @RequestHeader Map<String, String> headers) {
         headers.forEach((key, value) -> {
             System.out.println(String.format(" ## Header '%s' => %s", key, value));
             // System.out.println(" ## Header Name :: "+key+" Header Value :: "+value);
         });
 
-        return new ResponseEntity<String>(
-                String.format("Listed %d headers", headers.size()), HttpStatus.OK);
+        return new ResponseEntity<Map<String, String>>(headers, HttpStatus.OK);
     }
 
     @GetMapping("/multi-value")
